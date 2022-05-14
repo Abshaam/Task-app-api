@@ -25,7 +25,15 @@ const UserSchema = new Schema({
             type: Schema.Types.ObjectId,
             ref: "Todo",
         },
-    ]
+    ],
+
+    passwordHash: {
+        type: String
+    },
+
+    resetToken: {
+        type: String,
+    }
 })
 
 // Before saving the password is hashed for security
