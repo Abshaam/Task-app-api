@@ -1,5 +1,5 @@
 const express = require('express');
-const {signup, login, logout, allTodoByaUser, resetPassword,forgotPassword, resetForggotenPassword } = require('../controller/userController')
+const {signup, login, logout, allTodoByaUser, resetPassword,forgotPassword, resetForggotenPassword, verifyToken,} = require('../controller/userController')
 const router = express.Router();
 
 // signing up a user
@@ -19,7 +19,12 @@ router.post('/reset-password', resetPassword);
 
 router.put('/forgot-password/:email', forgotPassword);
 
-router.put('/:resetToken/reset-password',resetForggotenPassword  )
+router.put('/reset-password/:resetToken',resetForggotenPassword);
+
+// http://localhost:3000/reset-password/${resetToken}
+
+router.get('/:id/verify/:token',verifyToken)
+
 
 
 

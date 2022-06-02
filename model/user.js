@@ -1,15 +1,19 @@
 const mongoose = require('mongoose');
 const {Schema} = mongoose;
+const Joi = require("joi");
+
 
 const UserSchema = new Schema({
     name:{
         type: String,
-        required: [true, " Please enter full name"],
+        min: 3,
+        max: 255,
+        required: true 
     },
 
     email: {
         type: String,
-        required: [true, "Please enter an email"],
+        required: true,
         unique: true,
         lowercase: true,
         trim: true
@@ -17,8 +21,8 @@ const UserSchema = new Schema({
 
     password:{
         type: String,
-        required:[true, "Please enter a password"],
-        minlength: [4, "Please the password should be at least four"]
+        required: true,
+        minlength: 4, 
     },
     todos: [
         {
@@ -33,7 +37,18 @@ const UserSchema = new Schema({
 
     resetToken: {
         type: String,
-    }
+    },
+
+    token: {
+        type: String,
+    },
+
+    verified: {
+        type: Boolean,
+        default: false,
+    },
+
+    
 })
 
 // Before saving the password is hashed for security
@@ -45,5 +60,25 @@ const UserSchema = new Schema({
 
 const User = mongoose.model("User", UserSchema);
 
-module.exports = 
-    User
+const validate = (user) => {
+    const schema = Joi.object({
+      name: Joi.string().min(3).max(255).required(),
+      email: Joi.string().email().required(),
+      password: Joi.string().min(4).required(),
+    });
+    return schema.validate(user);
+  };
+
+const validateLogin = (user) => {
+    const schema = Joi.object({
+        email: Joi.string().email().required(),
+        password: Joi.string().min(4).required(),
+    });
+    return schema.validate(user);
+}
+
+module.exports = {
+      User,
+      validate,
+      validateLogin
+ }

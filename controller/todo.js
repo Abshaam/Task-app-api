@@ -1,6 +1,8 @@
+// requiring all modules 
 const {Todo} = require('../model/todo');
-const User  = require('../model/user');
+const {User}  = require('../model/user');
 
+// controller for adding a todo
 const addTodo = async (req, res) =>{
    try{ 
 
@@ -30,6 +32,8 @@ const addTodo = async (req, res) =>{
 }  
 
  };
+
+
 
 const fetchTodos = async (req, res) =>{
     try{

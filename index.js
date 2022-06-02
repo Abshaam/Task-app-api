@@ -69,3 +69,63 @@ mongoose.connect(process.env.MONGO_URi, {useNewUrlParser: true,
 app.listen(PORT,() => {
     console.log(`server running on ${PORT}`)
 });
+
+// npm i redux react-redux
+// store.js
+// import { createStore } = from 'redux';
+// import rootReducer = from './reducer';
+
+// const store = createStore(rootReducer)
+
+// export default store
+// action is an object which has an object and a payload
+
+// Action
+// todoAction.js
+// export const createTodo = {
+    // type: 'ADD_TODO',
+    // payload: {
+        // id : ++id,
+        // completed: false
+        // text: 'going out'
+    // }
+// }
+
+// Reducers
+// reducer takes action and state
+
+// todoReducer.js
+// import { createTodo} = from ("./todoAction.js")
+// const todoReducer = (state=[], action) =>{
+    // switch(action.type){
+        // case "ADD_TODO":{
+        //   const newTodo = action.payload
+        // return{
+            // [...state, payload]
+        // }
+        // }
+    // }
+    // default: {
+        // return state
+    // }
+// }
+
+// App.js
+// import {useDispatch} from = ("react-redux")
+// import {createTodo} from = ("../todoAction.js")
+
+// const app = () =>{
+    // const dispatch = useDispatch()
+
+    // return{
+        // <input type = "text">
+        //   <button
+        //   onClick= {() => dispatch (createTodo ({type: "ADD_TODO", payload:{
+            // id: 1
+            // text: input
+            // conpleted: false
+        // }}))}>
+            //   </button>  
+        // </input>
+    // }
+// }
